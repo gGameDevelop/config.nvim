@@ -1,12 +1,14 @@
-local servers = {"lua_ls", "clangd", "glsl_analyzer", "pyright", "ts_ls", "html", "emmet_ls"}
+local servers = {"lua_ls", "clangd", "glsl_analyzer", "pyright", "ts_ls", "jsonls", "html", "emmet_ls", "cssls"}
 
 vim.lsp.config("lua_ls", require("lsp.init").lua_ls)
 vim.lsp.config("clangd", require("lsp.init").clangd)
 vim.lsp.config("glsl_analyzer", require("lsp.init").glsl_analyzer)
 vim.lsp.config("pyright", require("lsp.init").pyright)
 vim.lsp.config("ts_ls", require("lsp.init").ts_ls)
+vim.lsp.config('jsonls', require("lsp.init").jsonls)
 vim.lsp.config("html", require("lsp.init").html)
 vim.lsp.config("emmet_ls", require("lsp.init").emmet_ls)
+vim.lsp.config("cssls", require("lsp.init").cssls)
 
 vim.lsp.enable(servers)
 
