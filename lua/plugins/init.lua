@@ -99,8 +99,8 @@ return
 				Method = "",
 				Function = "",
 				Constructor = "",
-				Field = "",
-				Variable = "",
+				Field = "",
+				Variable = "",
 				Class = "",
 				Interface = "",
 				Module = "",
@@ -162,9 +162,9 @@ return
 		end
 	},
 	{
-		"rcarriga/nvim-dap-ui",
+		"mfussenegger/nvim-dap",
 		lazy = true,
-		dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+		dependencies = { "rcarriga/nvim-dap-ui", "nvim-neotest/nvim-nio", "theHamsta/nvim-dap-virtual-text" },
 		keys = {
 			{ "<leader>db", "<cmd>DapToggleBreakpoint<CR>", desc = "DAP toggle breakpoint" },
 			{ "<leader>dc", "<cmd>DapContinue<CR>", desc = "DAP continue" },
@@ -174,6 +174,9 @@ return
 		},
 		config = function()
 			local dap, dapui = require("dap"), require("dapui")
+
+			dapui.setup()
+			require("nvim-dap-virtual-text").setup()
 
 			dap.listeners.before.attach.dapui_config = function()
 				dapui.open()
@@ -188,28 +191,29 @@ return
 				dapui.close()
 			end
 
-			dap.adapters.cppdbg = {
-				id = "cppdbg",
-				type = "executable",
-				command = "OpenDebugAD7.cmd",
-				options = {
-					detached = false,
-				},
+			dap.adapters.gdb = {
+				type = 'executable',
+				command = 'gdb',
+				args = { '-i', 'dap' }
 			}
 
 			dap.configurations.cpp = {
 				{
-					name = "Launch file",
-					type = "cppdbg",
-					request = "launch",
+					name = 'Launch',
+					type = 'gdb',
+					request = 'launch',
 					program = function()
-						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+						return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
 					end,
-					cwd = "${workspaceFolder}",
+					cwd = '${workspaceFolder}',
+					args = function()
+						local arguments = vim.fn.input('Arguments: ')
+						return vim.split(arguments, " ")
+					end,
 				},
 			}
 
-			dap.configurations.c = dap.configurations.cpp;
+			dap.configurations.c = dap.configurations.cpp
 
 			vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
 			vim.fn.sign_define("DapStopped", { text = "❭", texthl = "DapStopped", linehl = "", numhl = "" })

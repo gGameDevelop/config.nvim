@@ -56,7 +56,7 @@ M.lua_ls =
 
 M.clangd =
 {
-	cmd = { "clangd", "--header-insertion=never", "--background-index=false", "--fallback-style=Microsoft" },
+	cmd = { "clangd", "--all-scopes-completion=false", "--header-insertion=never", "--background-index=false", "--fallback-style=Microsoft" },
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 	root_markers = {
 		".clangd",
