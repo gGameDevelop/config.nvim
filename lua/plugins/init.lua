@@ -244,26 +244,11 @@ return
 		end
 	},
 	{
-		'nvim-telescope/telescope.nvim',
-		lazy = true,
-		dependencies = { 'nvim-lua/plenary.nvim', "nvim-telescope/telescope-ui-select.nvim", "nvim-telescope/telescope-dap.nvim" },
+		"junegunn/fzf",
+		dependencies = { "junegunn/fzf.vim" },
 		keys = {
-			{'<leader>fpf', require('telescope.builtin').find_files},
-			{'<leader>fpg', require('telescope.builtin').live_grep},
-			{'<leader>fpb', require('telescope.builtin').buffers},
-			{'<leader>fh', require('telescope.builtin').help_tags},
-		},
-		opts = {},
-		config = function ()
-			local telescope = require "telescope"
-			telescope.load_extension('dap')
-			telescope.load_extension("ui-select")
-			vim.keymap.set("n", "<leader>fdc", require'telescope'.extensions.dap.commands)
-			vim.keymap.set("n", "<leader>fdo", require'telescope'.extensions.dap.configurations)
-			vim.keymap.set("n", "<leader>fdb", require'telescope'.extensions.dap.list_breakpoints)
-			vim.keymap.set("n", "<leader>fdv", require'telescope'.extensions.dap.variables)
-			vim.keymap.set("n", "<leader>fdf", require'telescope'.extensions.dap.frames)
-		end
+			{ "<leader>fpf", "<cmd>FZF<CR>" }
+		}
 	},
 	{
 		"folke/trouble.nvim",
