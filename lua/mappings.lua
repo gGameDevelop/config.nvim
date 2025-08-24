@@ -20,7 +20,7 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
 vim.keymap.set("t", "<C-x>", "<C-\\><C-N>")
-vim.keymap.set({"n", "t"}, "<C-\\>", "<cmd>ToggleTerm direction=float<CR>")
+vim.keymap.set({"n", "t"}, "<leader><C-t>", "<cmd>ToggleTerm direction=float<CR>")
 
 vim.keymap.set("n", "<C-p>g", function ()
 	local action = vim.fn.input("Action: ")

@@ -194,7 +194,10 @@ return
 			dap.adapters.gdb = {
 				type = 'executable',
 				command = 'gdb',
-				args = { '-i', 'dap' }
+				args = { '-i', 'dap' },
+				options = {
+					detached = false,
+				},
 			}
 
 			dap.configurations.cpp = {
@@ -207,13 +210,13 @@ return
 					end,
 					cwd = '${workspaceFolder}',
 					args = function()
-						local arguments = vim.fn.input('Arguments: ')
-						return vim.split(arguments, " ")
-					end,
-				},
+						return vim.split(vim.fn.input('Arguments: '), " ")
+					end
+				}
 			}
 
 			dap.configurations.c = dap.configurations.cpp
+			dap.configurations.asm = dap.configurations.cpp
 
 			vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
 			vim.fn.sign_define("DapStopped", { text = "❭", texthl = "DapStopped", linehl = "", numhl = "" })
@@ -247,7 +250,15 @@ return
 		"junegunn/fzf",
 		dependencies = { "junegunn/fzf.vim" },
 		keys = {
-			{ "<leader>fpf", "<cmd>FZF<CR>" }
+			{ "<leader>fpf", "<cmd>Files<CR>" },
+			{ "<leader>fpl", "<cmd>Lines<CR>" },
+			{ "<leader>fw", "<cmd>Windows<CR>" },
+			{ "<leader>fb", "<cmd>Buffers<CR>" },
+			{ "<leader>fh", "<cmd>Helptags<CR>" },
+			{ "<leader>fgf", "<cmd>GFiles<CR>" },
+			{ "<leader>fgs", "<cmd>GFiles?<CR>" },
+			{ "<leader>fgpc", "<cmd>Commits<CR>" },
+			{ "<leader>fgbc", "<cmd>BCommits<CR>" }
 		}
 	},
 	{
@@ -296,7 +307,10 @@ return
 		}
 	},
 	{
-		"tpope/vim-surround",
+		"tpope/vim-surround"
+	},
+	{
+		"tpope/vim-fugitive"
 	},
 	{
 		"folke/zen-mode.nvim",
