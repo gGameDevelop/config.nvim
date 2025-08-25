@@ -247,19 +247,23 @@ return
 		end
 	},
 	{
-		"junegunn/fzf",
-		dependencies = { "junegunn/fzf.vim" },
+		'nvim-telescope/telescope.nvim',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		lazy = true,
 		keys = {
-			{ "<leader>fpf", "<cmd>Files<CR>" },
-			{ "<leader>fpl", "<cmd>Lines<CR>" },
-			{ "<leader>fw", "<cmd>Windows<CR>" },
-			{ "<leader>fb", "<cmd>Buffers<CR>" },
-			{ "<leader>fh", "<cmd>Helptags<CR>" },
-			{ "<leader>fgf", "<cmd>GFiles<CR>" },
-			{ "<leader>fgs", "<cmd>GFiles?<CR>" },
-			{ "<leader>fgpc", "<cmd>Commits<CR>" },
-			{ "<leader>fgbc", "<cmd>BCommits<CR>" }
-		}
+			{'<leader>fpf', "<cmd>Telescope find_files<CR>"},
+			{'<leader>fpg', "<cmd>Telescope live_grep<CR>"},
+			{'<leader>fgb', "<cmd>Telescope git_branches<CR>"},
+			{'<leader>fgf', "<cmd>Telescope git_files<CR>"},
+			{'<leader>fgs', "<cmd>Telescope git_status<CR>"},
+			{'<leader>fgpc', "<cmd>Telescope git_commits<CR>"},
+			{'<leader>fgbc', "<cmd>Telescope git_bcommits<CR>"},
+			{'<leader>fd', "<cmd>Telescope diagnostics<CR>"},
+			{'<leader>fb', "<cmd>Telescope buffers<CR>"},
+			{'<leader>fh', "<cmd>Telescope help_tags<CR>"},
+			{'<leader>fk', "<cmd>Telescope keymaps<CR>"},
+		},
+		opts = {}
 	},
 	{
 		"folke/trouble.nvim",
